@@ -12,8 +12,8 @@ class JourneyCacheApplication
 fun main(args: Array<String>) {
 	runApplication<JourneyCacheApplication>(*args)
 }
-data class Journey(val id: Int,
-				   val userId: Int,
+data class Journey(val id: Long,
+				   val userId: Long,
 				   val startLong: Double,
 				   val startLat: Double,
 				   val endLong: Double,
@@ -26,8 +26,8 @@ class JourneyController {
 	fun getIndex() = "Hello world!"
 
 	@GetMapping("/journey/{journey_id}")
-	fun getJourney(@PathVariable journey_id: Int) = "Hello, $journey_id!"
+	fun getJourney(@PathVariable journey_id: Long) = "Hello, $journey_id!"
 
 	@GetMapping("/user/{user_id}/journeys")
-	fun getUserJourneys(@PathVariable user_id: Int) = "Hello, $user_id!"
+	fun getUserJourneys(@PathVariable user_id: Long) = "Hello, $user_id!"
 }
