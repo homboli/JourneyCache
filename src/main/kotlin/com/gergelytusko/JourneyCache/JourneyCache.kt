@@ -4,35 +4,35 @@ import com.gergelytusko.JourneyCache.exception.NotFoundException
 import com.gergelytusko.JourneyCache.model.Journey
 
 class JourneyCache {
-    var journeys: HashMap<Long, Journey> = hashMapOf()
-    var users: HashMap<Long, ArrayList<Long>> = hashMapOf()
+    var journeys: HashMap<Long, HashMap<Long, Journey>> = hashMapOf()
 
-    fun getJourney(id: Long): Journey {
-        var foundJourney = journeys.get(id)
-        if(foundJourney == null) {
-            throw NotFoundException("Journey (${id.toString()}) not found");
+    fun getJourney(userId: Long, journeyId: Long): Journey {
+        val foundUser = journeys[userId]
+        if(foundUser == null) {
+            throw NotFoundException("User (${userId.toString()}) not found");
         } else {
-            return foundJourney;
+            val foundJourney = foundUser[journeyId]
+            if (foundJourney == null) {
+                throw NotFoundException("Journey (${journeyId.toString()}) not found");
+            } else {
+                return foundJourney;
+            }
         }
     }
 
-    fun add(journeyId: Long, journey: Journey){
-        if(users.containsKey(journey.userId)){
-            users[journey.userId]?.add(journey.userId.toLong())
-        } else {
-            users.put(journey.userId, arrayListOf(journey.userId.toLong()))
+    fun add(journey: Journey){
+        if(!journeys.containsKey(journey.userId)){
+            journeys.put(journey.userId, HashMap<Long, Journey>())
         }
-        journeys.put(journeyId, journey)
+        journeys[journey.userId]!![journey.id] = journey
     }
 
     fun getUserJourneys(userId: Long): ArrayList<Journey> {
-        var journeyList: ArrayList<Journey> = ArrayList()
-        var userJourneyIds: ArrayList<Long> = users.get(userId)!!
-        if (userJourneyIds != null) {
-            for (element in userJourneyIds) {
-                journeyList.add(journeys.get(element)!!)
-            }
+        val foundUser = journeys[userId]
+        if(foundUser == null) {
+            throw NotFoundException("User (${userId.toString()}) not found");
+        } else {
+            return ArrayList<Journey>(foundUser.values)
         }
-        return journeyList
     }
 }

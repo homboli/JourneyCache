@@ -14,7 +14,7 @@ class JourneyController(val journeyService: JourneyService) {
 
     @GetMapping("/journey/{journey_id}")
     fun getJourney(@PathVariable journey_id: Long, @RequestHeader("api-user-id") apiUserId: Long): Journey {
-        return journeyService.getJourneyByJourneyId(journey_id)
+        return journeyService.getJourney(apiUserId, journey_id,)
     }
 
     @GetMapping("/user/{user_id}/journeys")

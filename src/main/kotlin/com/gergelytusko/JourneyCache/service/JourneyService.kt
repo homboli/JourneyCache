@@ -16,8 +16,8 @@ class JourneyService {
         return cache.getUserJourneys(userId)
     }
 
-    fun getJourneyByJourneyId(journeyId: Long): Journey {
-        return cache.getJourney(journeyId)
+    fun getJourney(userId: Long, journeyId: Long): Journey {
+        return cache.getJourney(userId, journeyId)
     }
 
 }
