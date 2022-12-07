@@ -3,7 +3,9 @@ package com.gergelytusko.JourneyCache.service
 import com.gergelytusko.JourneyCache.JourneyCache
 import com.gergelytusko.JourneyCache.model.Journey
 import com.gergelytusko.JourneyCache.populateWithRandomData
+import org.springframework.stereotype.Service
 
+@Service
 class JourneyService {
     val cache: JourneyCache = JourneyCache()
 
@@ -15,11 +17,7 @@ class JourneyService {
     }
 
     fun getJourneyByJourneyId(journeyId: Long): Journey {
-        var resultJourney: Journey? = cache.getJourney(journeyId)
-        if(resultJourney != null)
-            return resultJourney
-        else
-            throw Exception("Journey not found")
+        return cache.getJourney(journeyId)
     }
 
 }

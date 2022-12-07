@@ -1,6 +1,5 @@
 package com.gergelytusko.JourneyCache.controller
 
-import com.gergelytusko.JourneyCache.cache
 import com.gergelytusko.JourneyCache.model.Journey
 import com.gergelytusko.JourneyCache.service.JourneyService
 import org.springframework.web.bind.annotation.GetMapping
