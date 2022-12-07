@@ -1,14 +1,12 @@
 package com.gergelytusko.JourneyCache
 
 import com.gergelytusko.JourneyCache.model.Journey
-import kotlin.random.Random
-
 
 class JourneyCache {
     var journeys: HashMap<Long, Journey> = hashMapOf()
     var users: HashMap<Long, ArrayList<Long>> = hashMapOf()
 
-    fun get(id: Long): Journey? {
+    fun getJourney(id: Long): Journey? {
         return journeys.get(id)
     }
 
