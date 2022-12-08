@@ -8,4 +8,4 @@ data class Journey(val id: Long,
                    val endLong: Double,
                    val endLat: Double,
                    val endTime: Long,
-                   val price: Double);
+                   val price: Double)

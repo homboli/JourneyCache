@@ -9,13 +9,13 @@ class JourneyCache {
     fun getJourney(userId: Long, journeyId: Long): Journey {
         val foundUser = journeys[userId]
         if(foundUser == null) {
-            throw NotFoundException("User (${userId.toString()}) not found");
+            throw NotFoundException("User ($userId) not found")
         } else {
             val foundJourney = foundUser[journeyId]
             if (foundJourney == null) {
-                throw NotFoundException("Journey (${journeyId.toString()}) not found");
+                throw NotFoundException("Journey ($journeyId) not found")
             } else {
-                return foundJourney;
+                return foundJourney
             }
         }
     }
@@ -30,13 +30,9 @@ class JourneyCache {
     fun getUserJourneys(userId: Long): ArrayList<Journey> {
         val foundUser = journeys[userId]
         if(foundUser == null) {
-            throw NotFoundException("User (${userId.toString()}) not found");
+            throw NotFoundException("User ($userId) not found")
         } else {
             return ArrayList<Journey>(foundUser.values)
         }
-    }
-
-    fun sizeOfCache(): Int {
-        return journeys.size
     }
 }
