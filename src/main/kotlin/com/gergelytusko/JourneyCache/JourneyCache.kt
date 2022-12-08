@@ -35,4 +35,8 @@ class JourneyCache {
             return ArrayList<Journey>(foundUser.values)
         }
     }
+
+    fun sizeOfCache(): Int {
+        return journeys.size
+    }
 }

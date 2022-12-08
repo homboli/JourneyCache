@@ -5,9 +5,7 @@ import org.springframework.boot.runApplication
 
 @SpringBootApplication
 class JourneyCacheApplication
-var cache: JourneyCache = JourneyCache()
 
 fun main(args: Array<String>) {
 	runApplication<JourneyCacheApplication>(*args)
-	populateWithRandomData(100, cache);
 }

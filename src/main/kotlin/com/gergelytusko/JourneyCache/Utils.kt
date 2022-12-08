@@ -10,3 +10,13 @@ fun populateWithRandomData(count: Int, cache: JourneyCache) {
         cache.add(journey)
     }
 }
+
+fun createPopulatedCache(numberOfJourneys: Int, numberOfUsers: Int): JourneyCache {
+    var cache: JourneyCache = JourneyCache()
+    for (journeyId in 0..numberOfJourneys){
+        var userId = journeyId % numberOfUsers
+        var journey = Journey(journeyId.toLong(), userId.toLong(), Random.nextDouble(),  Random.nextDouble(), Random.nextLong(), Random.nextDouble(), Random.nextDouble(), Random.nextLong(), Random.nextDouble())
+        cache.add(journey)
+    }
+    return cache
+}
